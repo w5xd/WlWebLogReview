@@ -200,7 +200,7 @@ class ReceivedAudio
         $this->chunkSizeArray = array();
         $this->actualTimeBeginArray = array();
         $this->totalDataBytes = 0;
-        fseek($fp, $this->firstData, SEEK_BEGIN);
+        fseek($fp, $this->firstData, SEEK_SET);
         $timeBegin = $this->timeStart;
         while (!feof($fp))
         {
@@ -335,7 +335,7 @@ class ReceivedAudio
             $seekPos = $this->chunkPosArray[$i] + $this->byteToSendStart;
             if ($this->dbg)
                 echo ("fseek to " . $seekPos . " <br/>");
-            fseek($fp, $seekPos, SEEK_BEGIN);
+            fseek($fp, $seekPos, SEEK_SET);
             $toSend = $this->bytesToSend;
             $maxSend = $this->chunkSizeArray[$i] - $this->byteToSendStart;
             if ($toSend > $maxSend)
