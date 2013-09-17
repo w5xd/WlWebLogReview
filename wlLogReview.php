@@ -150,7 +150,7 @@
         $playbackPos = mktime($hour,$min,$sec,$month,$day,$year,0);
         $pbPositions[$i] = $playbackPos;
     }
-    $audioPresent = $serverLeftAndRightAudioSeparately ? file_exists($subdirectoryName . "StartingTimes1.txt") :
+    $audioPresent = $serveLeftAndRightAudioSeparately ? file_exists($subdirectoryName . "StartingTimes1.txt") :
         file_exists($subdirectoryName . "StartingTimes.txt");
 ?>
 
