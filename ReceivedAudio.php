@@ -180,7 +180,7 @@ class ReceivedAudio
         $min = substr($t,14,2);
         $sec = substr($t,17,2);
         // convert to seconds since the beginning of the Unix epoch
-        $this->timeStart = mktime($hour,$min,$sec,$month,$day,$year,0);
+        $this->timeStart = mktime($hour,$min,$sec,$month,$day,$year);
         if ($this->dbg) 
             echo ("yr mo da hr mn sec: ". $year . " " . $month . " " . $day . " " . $hour . " " .
                 $min . " " . $sec . "<br/>" .

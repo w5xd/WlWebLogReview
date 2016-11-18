@@ -147,7 +147,7 @@
         $min = substr($t,2,2);
         $sec = substr($t,4,2);
         // convert to seconds since the beginning of the Unix epoch
-        $playbackPos = mktime($hour,$min,$sec,$month,$day,$year,0);
+        $playbackPos = mktime($hour,$min,$sec,$month,$day,$year);
         $pbPositions[$i] = $playbackPos;
     }
     $audioPresent = $serveLeftAndRightAudioSeparately ? file_exists($subdirectoryName . "StartingTimes1.txt") :
@@ -201,10 +201,11 @@
                 $urlParams .= "&channel=" . (int)($matchingQsos[$i]["APP_WRITELOG_r"]);
             if ($embedPlayers) 
             {
-                echo ("<td>");
-                echo ("<embed src='ReceivedAudio.php?" . 
-                    $urlParams . "' height=10 autostart=false autoplay=false");
-                echo ("/></td>"); 
+                echo ("<td>\n");
+                echo ("<audio controls> <source src='ReceivedAudio.php?" . 
+                    $urlParams . "' type='audio/wav' />");
+                echo "Your browser does not support the audio tag.";
+                echo ("</audio></td>\n"); 
             }
             // compute the download file name
             $dlFileName = $myCallSign . "-" . $matchingQsos[$i]["CALL"];
