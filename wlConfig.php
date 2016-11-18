@@ -4,7 +4,7 @@
     $maxQsosFromQuery = 100;        // Maximum QSOs it will put on a page of results
     $enableEmbedPlayers = false; // false means no "Show Media Player" button on the page,
     $enableMatchUsingRegularExpression = false; // Advanced feature
-    $serveLeftAndRightAudioSeparately = false;  // Advanced feature. See http://writelog.com/web-log-review
+    $serveLeftAndRightAudioSeparately = false;  // Advanced feature. See ReadMe
     $byteRateAdjust = 1.0;        // Compressed audio (formats other than PCM) sometimes don't report exactly 
     $secondsBefore = 30;            // Seconds of audio to play before the QSO log time
     $secondsAfter =  10;             // Seconds of audio to play after the QSO log time
