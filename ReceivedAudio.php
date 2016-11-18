@@ -72,6 +72,7 @@ class ReceivedAudio
         if ($str == "fmt ") // all .WAV files must have this
         {
         $str = fread($fp, 4);       $this->fmt .= $str;
+        $chunkSize = 0;
         for ($i = 3; $i >=0; $i--)
         {
                 $chunkSize *= 256;
@@ -354,13 +355,18 @@ class ReceivedAudio
     }
 }   // end of class ReceivedAudio
 
+function arrayGet($array, $key, $default = NULL)
+{
+    return isset($array[$key]) ? $array[$key] : $default;
+}
+
     include ("wlConfig.php");
 
 // php execution starts here
-    $reqPlaybackPos = $_REQUEST["position"];
-    $downloadNotPlay = $_REQUEST["download"];
-    $channelToPlay = (int)$_REQUEST["channel"];
-    $dlFileName = $_REQUEST["dlFileName"];
+    $reqPlaybackPos = arrayGet($_REQUEST, "position");
+    $downloadNotPlay = arrayGet($_REQUEST, "download");
+    $channelToPlay = (int)arrayGet($_REQUEST,"channel");
+    $dlFileName = arrayGet($_REQUEST, "dlFileName");
     if ($dlFileName == "") $dlFileName = "received.wav";
     if ($debugAudio)
     {   // debugging--send an html page rather than send audio content

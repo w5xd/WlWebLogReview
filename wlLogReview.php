@@ -98,12 +98,16 @@
         return $ret;
     }
     }
+    function arrayGet($array, $key, $default = NULL)
+    {
+        return isset($array[$key]) ? $array[$key] : $default;
+    }
 
     // php Execution starts here....
-    $queryString = $_REQUEST["callsign"];
-    $skipMatches = $_REQUEST["skip"];
-    $embedPlayers = $_REQUEST["embed"];
-    $matchUsingRegularExpression = $_REQUEST["useRE"];
+    $queryString = arrayGet($_REQUEST, "callsign");
+    $skipMatches = arrayGet($_REQUEST,"skip");
+    $embedPlayers = arrayGet($_REQUEST,"embed");
+    $matchUsingRegularExpression = arrayGet($_REQUEST,"useRE");
     $toSkip = $skipMatches;
     $matchingQsos = array();
     $adif = new AdifScan($subdirectoryName . $adifFileName);
