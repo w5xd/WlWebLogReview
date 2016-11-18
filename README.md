@@ -26,7 +26,7 @@ Here is the directory structure you must create on your PHP server and the files
 	<li>wlConfig.php <em>edited as below</em></li>
 	<li>wlLogReview.php </li>
 	<li>wlQso.ico </li>
-	<li>chageMe<em> make up an obscure directory name and create it in your web server. Upload these data files to that subdirectory:
+	<li>changeMe<em> make up an obscure directory name and create it in your web server. Upload these data files to that subdirectory:
 </em>
 <ul>
 	<li>StartingTimes.txt <em>as created by WriteLog in its AudioReview directory</em></li>
@@ -113,16 +113,16 @@ With this feature set to the default <strong>false</strong> setting, the audio s
 	<li>The QSOs that WriteLog flagged as "1" and "2" will correspond to left or right channels of audio, but which is which depends whether WriteLog was setup its upper Entry Windows as left or right. The upper window is radio "1" and corresponds to StartingTimes1.txt.</li>
 	<li>Edit StartingTimes1.txt by putting "Left/" or "Right/" in front of each file name.
 <ul>
-	<li>Contents of StartingTimes.txt before:<code>
+	<li>Contents of StartingTimes.txt before:<pre><code>
 ReceivedAudio001.WAV 2010-07-21 01:53:11
 ReceivedAudio002.WAV 2010-07-21 01:54:12
 ReceivedAudio003.WAV 2010-07-21 01:55:33
-</code></li>
-	<li>After:<code>
+</code></pre></li>
+	<li>After:<pre><code>
 Left/ReceivedAudio001.WAV 2010-07-21 01:53:11
 Left/ReceivedAudio002.WAV 2010-07-21 01:54:12
 Left/ReceivedAudio003.WAV 2010-07-21 01:55:33
-</code></li>
+</code></pre></li>
 </ul>
 </li>
 	<li>Edit StartingTimes2.txt similarly, but start with Right/ instead of Left/, or vice versa</li>
