@@ -29,7 +29,8 @@ Here is the directory structure you must create on your PHP server and the files
 	<li>changeMe<em> make up an obscure directory name and create it in your web server. Upload these data files to that subdirectory:
 </em>
 <ul>
-	<li>StartingTimes.txt <em>as created by WriteLog in its AudioReview directory</em></li>
+	<li>StartingTimes.txt <em>as created by WriteLog in its AudioReview directory.</em>
+	<br/>For a Linux PHP server the file names are case sensitive. ReceivedAudio001.WAV is <em>not</em> a match to ReceivedAudio001.wav.</li>
 	<li>ReceivedAudio<strong><em>nnn</em></strong>.WAV <em>ditto. Note: All the .WAV files named in </em>StartingTimes.txt<em> must be uploaded else <strong>none</strong> of them will work. If you want to test without all the .WAV files, then edit StartingTimes.txt to refer only to the uploaded ones.
 </em></li>
 	<li>&lt;log&gt;.adi<em> as created by WriteLog using File Save As...
@@ -56,8 +57,9 @@ $byteRateAdjust = 1.0; // Compressed audio (formats other than PCM) may not repo
 $secondsBefore = 30;            // Seconds of audio to play before the QSO log time
 $secondsAfter = 10;             // Seconds of audio to play after the QSO log time
 // Anything you want on the page may be put as HTML in $userHtml
-$userHtml = "&lt;p&gt;User HTML goes here&lt;/p&gt;";</span><span style="font-family: courier new;"> $mainPageName = "wlLogReview.php"; // change this only if you rename the main page
-$subdirectoryName = "changeMe/"; // put your adi, txt, and wav files in a subdirectory to prevent browser access
+$userHtml = "&lt;p&gt;User HTML goes here&lt;/p&gt;";
+$mainPageName = "wlLogReview.php"; // change this only if you rename the main page
+$subdirectoryName = "changeMe/"; // prevents browser access. put your adi, txt, wav files in a subdirectory 
 $debugAudio = false;    // Advanced feature
 /* WARNING DO NOT ADD BLANK LINES ANYWHERE IN THIS FILE */ ?&gt;</span>
 </pre>
@@ -68,7 +70,7 @@ $<em>adifFileName </em>is the name of the ADIF file containing the log you want 
 
 $<em>maxQsosFromQuery </em>is the maximum number of QSOs the page will display in reponse to a query of your ADIF file. If the number of matching QSOs exceeds this, the results page has an added "Skip" form which enables the user to go through the matching QSOs in batches of $maxQsosFromQuery.
 
-$<em>enableEmbedPlayers </em>set to <strong>false </strong>returns results pages with no embedded media players. Turning this to <strong>true</strong> adds a "Show Media Players" button to the query form. The embedded media players give a very nice visual effect and are very convenient, but they have the performance penalty that their mere presence on the page causes the immediate download of <em>all </em>the corresponding audio snippets as a result of the query. If you are browsing a large log with lots of maxQsosFromQuery, then this can be a large bandwidth load.
+$<em>enableEmbedPlayers </em>set to <strong>false </strong>returns results pages with no embedded media players. Turning this to <strong>true</strong> adds a "Show Media Players" button to the query form. The embedded media players give a nice visual effect and are convenient, but they have the performance penalty that their mere presence on the page causes the immediate download of <em>all</em> the corresponding audio snippets as a result of the query. If you are browsing a large log with lots of maxQsosFromQuery, then this can be a large bandwidth load.
 
 $<em>enableMatchUsingRegularExpression </em>set to <strong>true</strong> enables the "Search by RE" button on the query form. This is an advanced feature that allows returning pages with QSOs from many stations, but it uses the mind-numbingly complex UNIX regular expression syntax. With this set to <strong>false</strong> the query is for just one callsign and only calls that exactly match will be returned (uppercase and lower case all match).
 
@@ -88,16 +90,18 @@ $<em>userHtml </em>you may set to HTML (or plain text if you like) that you want
 
 $<em>mainPageName </em>should not be changed unless you have some reason to change the name of the provided wlLogReview.php file. $mainPageName must be the name of the file that used to be wlLogReview.php.
 
-<em>$subdirectoryName</em> must always be changed. Choose some directory name that internet users will not likely guess. If you set $subdirectoryName="", then anyone can download your StartingTimes.txt file, and the ReceivedAudio<em>nnn</em>.WAV files in their entirety, thus bogging down your web server. And anyone that can guess the name of your ADI file can download your entire log. To prevent this, choose an obscure name for a directory, and place your StartingTimes.txt file, your .adi file, and your .WAV files in that subdirectory.
+<em>$subdirectoryName</em> must always be changed. Choose some directory name that internet users will not likely guess. If you set $subdirectoryName="", then anyone can download your StartingTimes.txt file, and the ReceivedAudio<em>nnn</em>.WAV files in their entirety. And anyone that can guess the name of your ADI file can download your entire log. To prevent this, choose an obscure name for a directory, and place your StartingTimes.txt file, your .adi file, and your .WAV files in that subdirectory.
 
 $<em>debugAudio </em>set to <strong>true</strong> causes the audio snippet calculations routines to return a formatted html page instead of the audio itself. If your audio snippets do not work and you can't tell why, you might try turning this on and see if the extra diagnostics returned tell you anything helpful. This really is a debugging tool only.
 
 Here is what the screen looks like with all the features turned on.
-
-<img src="http://writelog.com/images/WebLogReviewExample.png" alt="WebLogReviewExample.png" />
+<span style='display:block; margin-left:auto; margin-right:auto;' >
+<img 
+src="http://writelog.com/images/WebLogReviewExample.png" alt="WebLogReviewExample.png" /></span>
 
 Here is what it looks like with all the features turned off.
-<img src="http://writelog.com/images/WebLogReviewExample.png" alt="WebLogReviewExample.png" />
+<span style='display:block; margin-left:auto; margin-right:auto;' ><img 
+src="http://writelog.com/images/WebLogReviewExample.png" alt="WebLogReviewExample.png" /></span>
 <h3>WAV File Formats</h3>
 The scripts have only been tested on the original WAV format  produced by WriteLog while continuously recording audio to file with WriteLog's compression turned off. However, the PHP code is designed to be general enough to create audio snippets from any .WAV file that adheres to the Microsoft standard for .WAV files. The PCM format files created by WriteLog are uncompressed and quite large compared to what is possible with compression. You may convert WriteLog's .WAV files to a compressed format and give them a try to save disk space on your server.
 <h3>$serveLeftAndRightAudioSeparately</h3>
